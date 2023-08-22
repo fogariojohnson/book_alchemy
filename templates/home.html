@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<title></title>
+<head>
+    <meta charset="UTF-8">
+    <title>My Personal Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #a3dfff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class = "container">
+<form action="/" method="GET">
+    <label for="search">Search books:</label>
+    <input type="text" id="search" name="search" placeholder="Enter search term">
+    <button type="submit">Search</button>
+</form>
+<form action="/" method="GET">
+    <label for="sort_by">Sort by:</label>
+    <select id="sort_by" name="sort_by">
+        <option value="">None</option>
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+    </select>
+    <button type="submit">Sort</button>
+</form>
+
+{% if books %}
+<div class="book-list">
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publication Year</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+        <tr>
+            <td>
+                <form action="/book/{{ book.id }}/delete" method="POST">
+                    <input type="submit" value="Delete Book">
+                </form>
+            </td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author.name }}</td>
+            <td>{{ book.publication_year }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p>No books available.</p>
+{% endif %}
+
+
+{% if authors %}
+<div class="author-list">
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Birth Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for author in authors %}
+        <tr>
+            <td>{{ author.name }}</td>
+            <td>{{ author.birth_date }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p>No authors available.</p>
+{% endif %}
+
+<!-- Add Author button -->
+<a href="/add_author">Add Author</a>
+
+<!-- Add Book button -->
+<a href="/add_book">Add Book</a>
+</div>
+</body>
+</html>
