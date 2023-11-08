@@ -11,7 +11,7 @@ class Author(Base):
     Attributes:
         id (int): The unique identifier for the author.
         name (str): The name of the author.
-        birth_date (date): The birth date of the author.
+        birth_date (date): The birthdate of the author.
         date_of_death (date): The date of death of the author, if applicable.
     """
     __tablename__ = 'authors'

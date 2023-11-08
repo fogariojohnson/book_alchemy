@@ -4,7 +4,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/Users/myste/PycharmProjects/book-alchemy/data/library.sqlite'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/Users/Admin/PycharmProjects/ProjectPhase5/book_alchemy/data/library.sqlite'
 db.init_app(app)
 
 
@@ -99,5 +99,4 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Create tables if they don't exist
 
-    app.run()
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5002, debug=True)
